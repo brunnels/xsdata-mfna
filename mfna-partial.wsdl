@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://microfocus.com/nas/2020/08"
+                  xmlns:nas="http://microfocus.com/nas/2020/08"
+
+>
+    <wsdl:types>
+        <schema targetNamespace="http://microfocus.com/nas/2020/08"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns="http://www.w3.org/2001/XMLSchema"
+                elementFormDefault="qualified">
+            <element name="activate_deviceInputParms" type="nas:activate_deviceInputParms"/>
+            <complexType name="activate_deviceInputParms">
+                <sequence>
+                    <element name="sessionid" type="xsd:string"/>
+                    <element name="ip" type="xsd:string" minOccurs="0" nillable="true"/>
+                    <element name="host" type="xsd:string" minOccurs="0" nillable="true"/>
+                    <element name="fqdn" type="xsd:string" minOccurs="0" nillable="true"/>
+                    <element name="deviceid" type="xsd:int" minOccurs="0" nillable="true"/>
+                </sequence>
+            </complexType>
+
+            <element name="loginInputParms" type="nas:loginInputParms"/>
+            <complexType name="loginInputParms">
+                <sequence>
+                    <element name="username" type="xsd:string"/>
+                    <element name="password" type="xsd:string"/>
+                </sequence>
+            </complexType>
+
+            <element name="logoutInputParms" type="nas:logoutInputParms" />
+            <complexType name="logoutInputParms">
+                <sequence>
+                    <element name="sessionid" type="xsd:string" />
+                </sequence>
+            </complexType>
+
+            <element name="Result" type="nas:Result"/>
+            <complexType name="Result">
+                <sequence>
+                    <element name="Status" type="xsd:string"/>
+                    <element name="Text" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    <element name="StackTrace" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    <element name="ResultSet" type="nas:ResultSet" minOccurs="0" maxOccurs="1"/>
+                </sequence>
+            </complexType>
+            <element name="nasFault" type="nas:nasFault"/>
+            <complexType name="nasFault">
+                <sequence>
+                    <element name="message" type="xsd:string"/>
+                    <element name="stack" type="xsd:string"/>
+                </sequence>
+            </complexType>
+
+            <element name="RequestHeader" type="nas:RequestHeader"/>
+            <complexType name="RequestHeader">
+                <sequence>
+                    <element name="DropNullElements" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ResultSet">
+
+                <sequence>
+                    <element name="Row" type="nas:Row" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+            </complexType>
+            <complexType name="Row">
+                <sequence>
+                    <element name="CVE" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="PowerScritCustFld1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="PowerScritCustFld2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="PowerScritCustFld3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="PowerScritCustFld4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="aCLID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="aCLType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="aaaPassword" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="aaaUserName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="accessMethods" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="accessTrigger" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="actionTaken" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="aggregatedPorts" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="allowFailover" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="application" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="applicationState" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="appliesToEntireDeviceFamily" type="xsd:int" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="approvalPriority" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="approvalStatus" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="approvalUsers" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="approveByDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="assetTag" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="associatedChannelID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="associatedChannelName" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="associatedTable" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="associatedTableID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="associatedUserGroupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="associatedVlanID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="authenticationRuleID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="baseModelName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="blockEndPattern" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="blockFormat" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="blockSize" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="blockStartPattern" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="blockType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="bootROMRequired" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="changeDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="changeEventData" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="changedBy" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="checksum" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="childDeviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="columnName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="commands" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="completeDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="conditions" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configComments" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configExceptionID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configHash" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configHashMode" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configPolicyDynamicScopeFilterCriteria" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="configPolicyID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configPolicyName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configRuleID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configRuleName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configurationVersion" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configuredDuplex" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="configuredSpeed" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="consoleIPAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="consolePort" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="consoleRealmName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="contact" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="containingUserGroupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="core" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="coreID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="createDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="createType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="createUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="createdBy" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="crossReferenceTopologyDataID" type="xsd:long" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="csvData" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="csvGroupTask" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="currentVLANNumber" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customDataID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customFieldDefinitionID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customFieldID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customFieldName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customFieldValue" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customModel" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="customScriptID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="data" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="dataBlock" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="destinationDeviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceACLID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceAccessLogID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceAuthenticationID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceDataID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceFamily" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceFamilyName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroup1ID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroup2ID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroup3ID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroupName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceGroups" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceIP" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceModuleID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="devicePortID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceRelationshipID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceSoftwareImageID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceTopologyDataID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceVTPID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceViewID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceViewIDChanged" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="deviceVlanInfoID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="devices" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="disclosureDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="displayName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="distinguishedName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="domainName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="driverLookupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="driverName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="driverNames" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="driverRequired" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="drivers" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="duplexMismatchDetected" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="duration" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="durationStr" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="dynamicFilter" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="dynamicFilterXML" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="emailAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="endDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="endRange" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="evaluationLogic" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventClass" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventData" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventDeviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventTaskID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventText" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="eventUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="exactOrder" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="exceptionType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="excludeFromPoll" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="expensive" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="expirationDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="externalChangeRequestID" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="failedChildCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="failureType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="feedSource" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="fieldDataType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="fieldID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="fieldLabel" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="fieldName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="fieldValues" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="firmwareVersion" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="firstName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="firstSeen" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="flags" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="flashMemory" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="flashRAMRequired" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="forceSave" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="freePorts" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="geographicalLocation" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="grantedResources" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="groups" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="handle" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="hardwareRequired" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="hardwareRevision" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="hashAlg" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="hierarchyLayer" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="hostName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="id" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="idValue" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="imageName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="imagePath" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="imageSetName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="imageSize" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="importance" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="inCompliance" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="inUse" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="interceptorLogCustom1" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="interceptorLogCustom2" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="interceptorLogCustom3" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="interceptorLogCustom4" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="interceptorLogCustom5" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="interceptorLogCustom6" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="interceptorLogID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipAddresses" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipMask" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipPriority" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ipValue" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isConfigChange" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isDynamic" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isIntegrationEnabled" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isLookupSkipped" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isParent" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isPolicyScope" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="isUsingSsl" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastAccessAttemptDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastAccessAttemptStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastAccessSuccessDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastConfigChangeUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastConfigPolicyCheckedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastDuplexDataUpdate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastImportDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastLoginDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastModifiedAccessLogID" type="xsd:long" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastModifiedDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastModifiedUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastModifyDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastModifyUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastRecordModifiedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastSeen" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastSnapshotAttemptDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastSnapshotAttemptStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastSnapshotDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastSnapshotSuccessDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastTopologyDataUpdate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="lastUpdated" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="lastUsedAuthenticationID" type="xsd:int" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="latestSoftwareHistoryID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="latestStartupRunningDiffer" type="xsd:int" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="limitSearchbyDeviceGroup" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="limitSearchbyPartition" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="mCreateDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mCustomServiceTypes" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mDeviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mDevicePropertyID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mLastModifiedDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mServiceTypes" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_appliesTo" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_buildNum" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_comments" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_coreHostname" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_coreID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_coreRMIPort" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_databaseHostname" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_databaseIdentifier" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_databasePort" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_defaultDeviceGroupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_deviceGroupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_enabled" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_isMasterDef" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_lastModifiedDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_managingCoreID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_owningCoreID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_realmName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_replicationAdminUser" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="m_replicationPassword" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="m_siteID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_status" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_timezoneOffset" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_userName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_version" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_viewID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="m_viewName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="macAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="managementStatus" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="managerUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="managingCoreID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="maskedSize" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="maxVLANNumber" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="maxWaitTime" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="maxWaitTimeType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="md5Digest" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="memory" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="messageTo" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="metadataID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="metadataName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="model" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="modelDataName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="modelRequired" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="modemNumber" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="modifiable" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleDescription" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleModel" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="moduleOS" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mostRecent" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mostRecentConfigID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="mtu" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nATIPAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nATRealmName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="naIntegrationUser" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nativeVlan" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="negotiatedDuplex" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="negotiatedSpeed" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="networkAddressStart" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiHostName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiIntegrationID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiNodeUUID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiPassword" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiPort" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiSystemID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="nnmiUser" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="noPrune" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="operand" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="operatingMode" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="operatorName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="originatingDeviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="paddedIp" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="parameters" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="parentDeviceGroupID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="parentIdentifier" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="parentModuleID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="parentTaskID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="partitionCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="partitions" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="password" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="passwordLastModifiedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="passwordOption" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="pattern" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="pendingChildCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="performACLParsing" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="policyImportance" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="policyInCompliance" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portAllows" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portChannelID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portChannelName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portState" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portStatus" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="portType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="postCheckExpression" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="powerScriptID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="preCheckExpression" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="primaryFQDN" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="primaryIPAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="priority" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="privilegeLevel" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="processor" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="pruningMode" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="putInServiceDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="rOMVersion" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="realmName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="redirectLocation" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="refreshToken" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="refreshTokenID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="relationshipTypeID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="relationshipTypeName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="remoteDeviceID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="remoteDevicePortID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="remoteSasServerID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="remoteSasServerInterfaceID" type="xsd:long" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="repeatCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="repeatEndDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="repeatInterval" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="repeatType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="repeatWeekday" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="required" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="requiredUser" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="requiresReferenceUpdate" type="xsd:string" minOccurs="0" maxOccurs="1"
+                             nillable="true"/>
+                    <element name="requiresUpdate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="reservationEndDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="reservedDuration" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="reservedDurationType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="resourceIdentityID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="resourceIdentityPoolID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="resultConfigID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="retryCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="retryInterval" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="roleID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="roleName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="roleType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="rollBackScriptVO" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ruleConditionID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ruleConditionOrder" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ruleName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="rulePattern" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="rulePriority" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ruleType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="runASAP" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="runRollBack" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="runType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="runningChildTaskId" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="salt" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="saltmode" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="saveFavoriteLink" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="saveTask" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="saveTemplate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scheduleDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scheduleTaskID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scope" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="script" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scriptMode" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scriptName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scriptType" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scriptVO" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="scripts" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="serialNumber" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="sessionData" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="sessionType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="shared" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="siteID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="siteName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="slot" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="slotNumber" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="slotType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="softwareVersion" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="solution" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="sourceDeviceDataID" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="startRange" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="status" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="stopOnFail" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="subTask" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="subTasks" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="subnetBitCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="succeededChildCount" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="systemTask" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="tFTPServerIPAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="tableName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="tag" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskData" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="taskUserID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="temporaryVlanName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="ticketNumber" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="timeZone" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="topologyDataType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="totalPorts" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="treatNullAsEmpty" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="unmanagedDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="uptime" type="xsd:long" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="uptimeStoredDate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="useAaaLoginForProxy" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="useLatest" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="useRegex" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="useRegexp" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="usedToAccess" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userCustom1" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userCustom2" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userCustom3" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userCustom4" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userCustom5" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userCustom6" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userGeneratedChange" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userGroups" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userPassword" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="userPasswordUnhashed" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="variableData" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="variables" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vendor" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vendorAdvisoryURL" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vendorSolutionURL" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vlanID" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vlanName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vlanPortType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vlanPrivate" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vlanStatus" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vlanType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="volatileRAMRequired" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vtpTrapsGeneration" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vtpV2Mode" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                    <element name="vtpVersion" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+                </sequence>
+            </complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="nasFaultMessage">
+        <part name="error" element="nas:nasFault"/>
+    </wsdl:message>
+    <wsdl:message name="activate_deviceRequest">
+        <part name="parameters" type="nas:activate_deviceInputParms"/>
+        <part name="header" element="nas:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="activate_deviceResponse">
+        <part name="Result" type="nas:Result"/>
+    </wsdl:message>
+    <!--login-->
+    <wsdl:message name="loginRequest">
+        <part name="parameters" type="nas:loginInputParms"/>
+        <part name="header" element="nas:RequestHeader"/>
+    </wsdl:message>
+
+    <wsdl:message name="loginResponse">
+        <part name="Result" type="nas:Result"/>
+    </wsdl:message>
+    <!--logout-->
+    <wsdl:message name="logoutRequest">
+        <part name="parameters" type="nas:logoutInputParms"/>
+        <part name="header" element="nas:RequestHeader"/>
+    </wsdl:message>
+
+    <wsdl:message name="logoutResponse">
+        <part name="Result" type="nas:Result"/>
+    </wsdl:message>
+    <wsdl:portType name="NetworkManagementApi">
+        <wsdl:operation name="activate_device">
+            <wsdl:documentation></wsdl:documentation>
+            <wsdl:input message="nas:activate_deviceRequest"/>
+            <wsdl:output message="nas:activate_deviceResponse"/>
+            <wsdl:fault name="error" message="nas:nasFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="login">
+            <wsdl:documentation></wsdl:documentation>
+            <wsdl:input message="nas:loginRequest"/>
+            <wsdl:output message="nas:loginResponse"/>
+            <wsdl:fault name="error" message="nas:nasFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="logout">
+            <wsdl:documentation></wsdl:documentation>
+            <wsdl:input message="nas:logoutRequest"/>
+            <wsdl:output message="nas:logoutResponse"/>
+            <wsdl:fault name="error" message="nas:nasFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding type="nas:NetworkManagementApi" name="NetworkManagementApiBinding">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="activate_device">
+            <soap:operation/>
+            <wsdl:input>
+                <soap:header use="literal" message="nas:activate_deviceRequest" part="header"/>
+                <soap:body use="literal" namespace="http://microfocus.com/nas/2020/08" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://microfocus.com/nas/2020/08"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="login">
+            <soap:operation/>
+            <wsdl:input>
+                <soap:header use="literal" message="nas:loginRequest" part="header"/>
+                <soap:body use="literal" namespace="http://microfocus.com/nas/2020/08" parts="parameters"/>
+
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://microfocus.com/nas/2020/08"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="logout">
+            <soap:operation/>
+            <wsdl:input>
+                <soap:header use="literal" message="nas:logoutRequest" part="header"/>
+                <soap:body use="literal" namespace="http://microfocus.com/nas/2020/08" parts="parameters"/>
+
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://microfocus.com/nas/2020/08"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="NetworkManagementApi">
+        <wsdl:port name="NetworkManagementApi" binding="nas:NetworkManagementApiBinding">
+            <soap:address location="https://localhost/soap"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
