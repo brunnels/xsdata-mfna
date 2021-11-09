@@ -2,9 +2,11 @@ import logging
 import sys
 from unittest import TestCase
 
+from xsdata.formats.dataclass.client import Client
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from mfna import NetworkManagementApiLogoutOutput, NasFault, Result
+from mfna import NetworkManagementApiLogoutOutput, NasFault, Result, LogoutRequest, NetworkManagementApiLogout, \
+    RequestHeader, LogoutInputParms, NetworkManagementApiLogoutInput
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -55,12 +57,32 @@ success_xml = '''\
 </SOAP-ENV:Envelope>
 '''
 
+logout_envelope = '<?xml version="1.0" encoding="UTF-8"?><soap-env:Envelope ' \
+                  'xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><ns1:RequestHeader ' \
+                  'xmlns:ns1="http://microfocus.com/nas/2020/08"><ns1:DropNullElements>true</ns1:DropNullElements' \
+                  '></ns1:RequestHeader></soap-env:Header><soap-env:Body><ns1:logout ' \
+                  'xmlns:ns1="http://microfocus.com/nas/2020/08"><parameters><ns1:sessionid>sf22a68fa-2bee-4fb8-8ee6' \
+                  '-0c7175d55312</ns1:sessionid></parameters></ns1:logout></soap-env:Body></soap-env:Envelope>'
+
 
 class LogoutOutputParserTests(TestCase):
     def setUp(self):
         self.parser = XmlParser()
         self.parser.config.fail_on_unknown_properties = False  # ideally this should not be required
         self.output = NetworkManagementApiLogoutOutput
+        self.client = Client.from_service(NetworkManagementApiLogout)
+        self.request_header = RequestHeader(drop_null_elements="true")
+
+    def test_request(self):
+        request = LogoutRequest(
+            parameters=LogoutInputParms(sessionid="sf22a68fa-2bee-4fb8-8ee6-0c7175d55312")
+        )
+        request_input = NetworkManagementApiLogoutInput(
+            body=NetworkManagementApiLogoutInput.Body(logout_request=request),
+            header=NetworkManagementApiLogoutInput.Header(request_header=self.request_header)
+        )
+        envelope = self.client.prepare_payload(request_input)
+        self.assertEqual(logout_envelope, envelope.replace("\n", ""))
 
     def test_error(self):
         response = self.parser.from_string(error_xml, self.output)
