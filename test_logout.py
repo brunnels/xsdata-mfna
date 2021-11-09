@@ -4,19 +4,36 @@ from unittest import TestCase
 
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from mfna import NetworkManagementApiLogoutOutput
+from mfna import NetworkManagementApiLogoutOutput, NasFault, Result
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 error_xml = '''\
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+      <faultcode>SOAP-ENV:Server</faultcode>
+      <faultstring>Server Error</faultstring>
+        <detail>
+          <nas:error xmlns:nas="http://microfocus.com/nas/2020/08">
+            <nas:message>Example error message</nas:message>
+            <nas:stack>java.lang.Exception: Example exception</nas:stack>
+          </nas:error>
+        </detail>
+    </SOAP-ENV:Fault>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+'''
+
+error_201_xml = '''\
 <?xml version="1.0" encoding="utf-8" ?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
   <SOAP-ENV:Header/>
   <SOAP-ENV:Body>
     <nas:logoutResponse xmlns:nas="http://microfocus.com/nas/2020/08">
       <nas:Result>
-        <nas:Status>201 Session sf22a68fa-2bee-4fb8-8ee6-0c7175d55312 does not exists</nas:Status>
+        <nas:Status>201 Session sf22a68fa-2bee-4fb8-8ee6-0c7175d55312 does not exist</nas:Status>
       </nas:Result>
     </nas:logoutResponse>
   </SOAP-ENV:Body>
@@ -48,7 +65,22 @@ class LogoutOutputParserTests(TestCase):
     def test_error(self):
         response = self.parser.from_string(error_xml, self.output)
         self.assertIsInstance(response, self.output)
+        self.assertIsInstance(response.body.fault.detail.nas_fault, NasFault)
+        self.assertEqual('Example error message', response.body.fault.detail.nas_fault.message)
+        self.assertEqual('java.lang.Exception: Example exception', response.body.fault.detail.nas_fault.stack)
+
+    def test_error_201(self):
+        response = self.parser.from_string(error_201_xml, self.output)
+        self.assertIsInstance(response, self.output)
+        self.assertIsInstance(response.body.logout_response.result, Result)
+        self.assertEqual(
+            "201 Session sf22a68fa-2bee-4fb8-8ee6-0c7175d55312 does not exist",
+            response.body.logout_response.result.status
+        )
 
     def test_success(self):
         response = self.parser.from_string(success_xml, self.output)
         self.assertIsInstance(response, self.output)
+        self.assertIsInstance(response.body.logout_response.result, Result)
+        self.assertEqual("200 Logged out", response.body.logout_response.result.status)
+        self.assertEqual("Logged out", response.body.logout_response.result.text)
