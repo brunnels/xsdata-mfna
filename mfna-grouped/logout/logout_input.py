@@ -1,0 +1,49 @@
+from dataclasses import dataclass, field
+from typing import Optional
+from .logout_request import LogoutRequest
+from ..request_header import RequestHeader
+
+__NAMESPACE__ = "http://microfocus.com/nas/2020/08"
+
+
+@dataclass
+class LogoutInput:
+    class Meta:
+        name = "Envelope"
+        namespace = "http://schemas.xmlsoap.org/soap/envelope/"
+
+    header: Optional["LogoutInput.Header"] = field(
+        default=None,
+        metadata={
+            "name": "Header",
+            "type": "Element",
+        }
+    )
+    body: Optional["LogoutInput.Body"] = field(
+        default=None,
+        metadata={
+            "name": "Body",
+            "type": "Element",
+        }
+    )
+
+    @dataclass
+    class Header:
+        request_header: Optional[RequestHeader] = field(
+            default=None,
+            metadata={
+                "name": "RequestHeader",
+                "type": "Element",
+                "namespace": "http://microfocus.com/nas/2020/08",
+            }
+        )
+
+    @dataclass
+    class Body:
+        logout: Optional[LogoutRequest] = field(
+            default=None,
+            metadata={
+                "type": "Element",
+                "namespace": "http://microfocus.com/nas/2020/08",
+            }
+        )
