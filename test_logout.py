@@ -78,7 +78,7 @@ class LogoutOutputParserTests(TestCase):
             parameters=LogoutInputParms(sessionid="sf22a68fa-2bee-4fb8-8ee6-0c7175d55312")
         )
         request_input = NetworkManagementApiLogoutInput(
-            body=NetworkManagementApiLogoutInput.Body(logout_request=request),
+            body=NetworkManagementApiLogoutInput.Body(logout=request),
             header=NetworkManagementApiLogoutInput.Header(request_header=self.request_header)
         )
         envelope = self.client.prepare_payload(request_input)

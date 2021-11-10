@@ -65,7 +65,7 @@ class LoginOutputParserTests(TestCase):
             parameters=LoginInputParms(username="username", password="password")
         )
         request_input = NetworkManagementApiLoginInput(
-            body=NetworkManagementApiLoginInput.Body(login_request=request),
+            body=NetworkManagementApiLoginInput.Body(login=request),
             header=NetworkManagementApiLoginInput.Header(request_header=self.request_header)
         )
         envelope = self.client.prepare_payload(request_input)

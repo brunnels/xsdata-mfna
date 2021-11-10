@@ -40,10 +40,9 @@ class NetworkManagementApiLoginInput:
 
     @dataclass
     class Body:
-        login_request: Optional[LoginRequest] = field(
+        login: Optional[LoginRequest] = field(
             default=None,
             metadata={
-                "name": "loginRequest",
                 "type": "Element",
                 "namespace": "http://microfocus.com/nas/2020/08",
             }

@@ -40,10 +40,9 @@ class NetworkManagementApiActivateDeviceInput:
 
     @dataclass
     class Body:
-        activate_device_request: Optional[ActivateDeviceRequest] = field(
+        activate_device: Optional[ActivateDeviceRequest] = field(
             default=None,
             metadata={
-                "name": "activate_deviceRequest",
                 "type": "Element",
                 "namespace": "http://microfocus.com/nas/2020/08",
             }

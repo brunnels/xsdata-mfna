@@ -40,10 +40,9 @@ class NetworkManagementApiLogoutInput:
 
     @dataclass
     class Body:
-        logout_request: Optional[LogoutRequest] = field(
+        logout: Optional[LogoutRequest] = field(
             default=None,
             metadata={
-                "name": "logoutRequest",
                 "type": "Element",
                 "namespace": "http://microfocus.com/nas/2020/08",
             }
