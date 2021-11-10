@@ -10,8 +10,8 @@ from importlib.util import spec_from_file_location
 logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
-mfna_dir = os.path.abspath(os.path.join(os.getcwd(), 'mfna'))
-module_base = "mfna"
+mfna_dir = os.path.abspath(os.path.join(os.getcwd(), 'mfna_grouped'))
+module_base = "mfna_grouped"
 
 modules = []
 
@@ -50,6 +50,7 @@ for module_name in modules:
 
                 for name, obj in inspect.getmembers(loaded_module, inspect.isclass):
                     if is_dataclass(obj) or module_file == f"{module_name}.py":
+                        # this is not good enough.  need to fix exclude all imported modules
                         if not str(obj.__module__).startswith(f"{module_base}.{module_directory.rpartition('/')[2]}"):
                             continue
 
@@ -62,7 +63,7 @@ for module_name in modules:
                 os.rename(module_filename, os.path.join(module_directory, module_file))
 
             init_file.write("\n__all__ = [\n")
-            for class_name in class_names:
+            for class_name in list(dict.fromkeys(class_names)):
                 all_str = f'    "{class_name}",\n'
                 init_cleanup.append(all_str)
                 init_file.write(all_str)
