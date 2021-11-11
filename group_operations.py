@@ -10,8 +10,8 @@ from importlib.util import spec_from_file_location
 logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
-mfna_dir = os.path.abspath(os.path.join(os.getcwd(), 'mfna_full'))
-module_base = "mfna_full"
+mfna_dir = os.path.abspath(os.path.join(os.getcwd(), 'mfna_grouped'))
+module_base = "mfna_grouped"
 
 modules = []
 
