@@ -10,8 +10,8 @@ from importlib.util import spec_from_file_location
 logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
-mfna_dir = os.path.abspath(os.path.join(os.getcwd(), 'mfna_grouped'))
-module_base = "mfna_grouped"
+mfna_dir = os.path.abspath(os.path.join(os.getcwd(), 'mfna_full'))
+module_base = "mfna_full"
 
 modules = []
 
@@ -43,6 +43,12 @@ for module_name in modules:
                 module_filename = os.path.join(mfna_dir, module_file)
                 file_import = module_file.partition(".")[0]
                 mn = f"{module_base}.{file_import.replace('-', '_')}"
+
+                # need to handle reserved keyword modules that have mod appended to their filenames
+                if module_file == f"{module_name}.py" and not os.path.exists(module_filename):
+                    module_filename = os.path.join(mfna_dir, f"{file_import}_mod.py")
+                    file_import = f"{file_import}_mod.py"
+
                 loader = SourceFileLoader(mn, module_filename)
                 spec = importlib.util.spec_from_loader(mn, loader)
                 loaded_module = importlib.util.module_from_spec(spec)
