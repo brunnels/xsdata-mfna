@@ -49,11 +49,8 @@ for module_name in modules:
                 loader.exec_module(loaded_module)
 
                 for name, obj in inspect.getmembers(loaded_module, inspect.isclass):
-                    if is_dataclass(obj) or module_file == f"{module_name}.py":
-                        # this is not good enough.  need to fix exclude all imported modules
-                        if not str(obj.__module__).startswith(f"{module_base}.{module_directory.rpartition('/')[2]}"):
-                            continue
-
+                    if obj.__module__ == loaded_module.__name__ \
+                            and (is_dataclass(obj) or module_file == f"{module_name}.py"):
                         class_names.append(name)
                         imp_str = f"from .{file_import} import {name}\n"
                         init_cleanup.append(imp_str)
