@@ -131,7 +131,7 @@ class LoginOutputParserTests(TestCase):
         self.assertEqual("200 Logged in", response.body.login_response.result.status)
         self.assertEqual("s229dc048-746e-471e-aaf8-66f7317d89d7", response.body.login_response.result.text)
 
-    def test_soap_response(self):
+    def test_xsdata_serialized_response(self):
         test_out = NetworkManagementApiLoginOutput()
         test_out.body = NetworkManagementApiLoginOutput.Body()
         test_out.body.login_response = LoginResponse()
