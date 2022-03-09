@@ -15,6 +15,6 @@ class LoginResponse:
         metadata={
             "name": "Result",
             "type": "Element",
-            "namespace": "",
+            "namespace": "http://microfocus.com/nas/2020/08",
         }
     )

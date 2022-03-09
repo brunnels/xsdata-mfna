@@ -74,7 +74,7 @@ class NetworkManagementApiLoginOutput:
                 nas_fault: Optional[NasFault] = field(
                     default=None,
                     metadata={
-                        "name": "nasFault",
+                        "name": "error",
                         "type": "Element",
                         "namespace": "http://microfocus.com/nas/2020/08",
                     }
